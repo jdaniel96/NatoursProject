@@ -12,6 +12,7 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
 // DOM ELEMENTS
+console.log('working');
 
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);

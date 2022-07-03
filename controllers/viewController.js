@@ -34,7 +34,7 @@ exports.getTourView = async (req, res, next) => {
       fields: 'review rating user',
     });
     res.status(200).render('tour', {
-      title: `${tour.name} tour`,
+      title: `${tour.name} Tour`,
       tour,
     });
   } catch (err) {
@@ -42,7 +42,6 @@ exports.getTourView = async (req, res, next) => {
       title: 'Something went very very wrong!',
       msg: err.message,
     });
-    next();
   }
 };
 

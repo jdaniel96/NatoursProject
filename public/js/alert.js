@@ -10,5 +10,5 @@ export const showAlert = (type, msg) => {
   window.setTimeout(() => {
     hideAlert();
     location.assign('/');
-  }, 1500);
+  }, 7000);
 };

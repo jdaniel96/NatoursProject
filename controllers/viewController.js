@@ -2,6 +2,13 @@ const Tour = require('../models/tourModel');
 const AppError = require('../utils/appError');
 const Bookings = require('../models/bookingModel');
 
+exports.alerts = (req, res, next) => {
+  const { alert } = req.query;
+  if (alert === 'booking')
+    res.locals.alert =
+      'Your booking was successful! check your email for confirmation, if it does not! please wait a little ';
+  next();
+};
 exports.getOverview = async (req, res, next) => {
   try {
     //get tour data from collection

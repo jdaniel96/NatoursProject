@@ -23,7 +23,7 @@ exports.getCheckoutSession = async (req, res, next) => {
       client_reference_id: req.params.tourId,
       line_items: [
         {
-          name: `${tour.name} name`,
+          name: `${tour.name} Tour`,
           description: tour.summary,
           images: [
             `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,

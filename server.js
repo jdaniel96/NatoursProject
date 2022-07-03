@@ -6,7 +6,7 @@ const app = require('./app');
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`app running on express on port ${port}`);
 });
 
@@ -25,3 +25,17 @@ mongoose
   });
 
 //schema haha blueprint omg jaja
+
+process.on('unhandledRejection', (err) => {
+  console.log('UNHANDLED REJECTION ⛔️ shutting down the server');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECEIVED shutting down the server gracefully');
+  server.close(() => {
+    console.log('💣 process terminated');
+  });
+});

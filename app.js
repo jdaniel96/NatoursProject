@@ -17,6 +17,7 @@ const cors = require('cors');
 const cookieparser = require('cookie-parser');
 const compression = require('compression');
 
+app.enable('trust proxy');
 app.use(cors());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/views')); //must be like this

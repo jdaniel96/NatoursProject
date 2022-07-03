@@ -2,15 +2,15 @@ const express = require('express');
 const authController = require('./../controllers/authController');
 const router = express.Router();
 const userController = require('../controllers/userController');
-const multer = require('multer');
 
 // const factory = require('../controllers/handlerFactory');
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
+router.get('/logout', authController.logout);
+
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
-router.get('/logout', authController.logout);
 
 router.use(authController.protect);
 

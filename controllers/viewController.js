@@ -1,6 +1,7 @@
 const Tour = require('../models/tourModel');
 const AppError = require('../utils/appError');
 const Bookings = require('../models/bookingModel');
+const User = require('../models/userModel');
 
 exports.alerts = (req, res, next) => {
   const { alert } = req.query;
@@ -45,7 +46,7 @@ exports.getTourView = async (req, res, next) => {
   }
 };
 
-exports.getLogin = (req, res, next) => {
+exports.getLogin = (req, res) => {
   try {
     res.status(200).render('login', {
       title: 'log in!',
@@ -69,6 +70,29 @@ exports.getMyTours = async (req, res) => {
     res.status(200).render('overview', {
       title: 'My Tours',
       tours,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.updateUserData = async (req, res, next) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        name: req.body.name,
+        email: req.body.email,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.status(200).render('account', {
+      title: 'Your account',
+      user: updatedUser,
     });
   } catch (err) {
     console.log(err);

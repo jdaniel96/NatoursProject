@@ -15,4 +15,10 @@ router.get('/login', authController.isLoggedIn, viewController.getLogin);
 router.get('/me', authController.protect, viewController.getAccount);
 router.get('/my-tours', authController.protect, viewController.getMyTours);
 
+router.post(
+  '/submit-user-data',
+  authController.protect,
+  viewController.updateUserData
+);
+
 module.exports = router;

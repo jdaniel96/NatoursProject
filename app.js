@@ -16,6 +16,7 @@ const viewRouter = require('./routes/viewRoutes');
 const cors = require('cors');
 const cookieparser = require('cookie-parser');
 const compression = require('compression');
+const bookingController = require('./controllers/bookingController');
 
 app.enable('trust proxy');
 app.use(cors());
@@ -37,6 +38,11 @@ const limiter = rateLimit({
   message: 'Too many request my nigga omg wtf',
 });
 app.use('/api', limiter);
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 //body parser
 app.use(
   express.json({

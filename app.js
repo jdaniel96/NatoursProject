@@ -19,6 +19,7 @@ const compression = require('compression');
 
 app.enable('trust proxy');
 app.use(cors());
+app.options('*', cors());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/views')); //must be like this
 app.use(express.static(path.join(__dirname, 'public')));
